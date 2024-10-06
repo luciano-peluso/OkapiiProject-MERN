@@ -1,6 +1,15 @@
 const Desarrollador = require('../models/Desarrollador');
 const mongoose = require('mongoose')
 
+const traerDevs = async (req, res) => {
+    try {
+        const devs = await Desarrollador.find({});
+        res.status(200).json({ success: true, message: "Desarolladores traidos con exito", data: devs })
+    } catch(error) {
+        console.error("Error en traer los desarrolladores: " + error.message);
+        res.status(500).json({ success: false, message: "Error interno del servidor"})
+    }
+}
 const crearDev = async (req, res) => {
     try {
         const nuevoDev = new Desarrollador(req.body);
@@ -9,16 +18,6 @@ const crearDev = async (req, res) => {
     } catch (error) {
         console.error("Error en crear el desarrollador: " + error.message);
         res.status(500).json({ success: false, message: "Error interno del servidor" })
-    }
-}
-
-const traerDevs = async (req, res) => {
-    try {
-        const devs = await Usuario.find({});
-        res.status(200).json({ success: true, message: "Desarolladores traidos con exito", data: devs })
-    } catch(error) {
-        console.error("Error en traer los desarrolladores: " + error.message);
-        res.status(500).json({ success: false, message: "Error interno del servidor"})
     }
 }
 
@@ -32,7 +31,7 @@ const editarDev = async (req, res) => {
     }
 
     try {
-        const devActualizado = await Desarrollador.findByIdAndUpdate(id, nombre, {new:true});
+        const devActualizado = await Desarrollador.findByIdAndUpdate(id, desarrollador, {new:true});
         res.status(200).json({ success:true, data:devActualizado, message:"El desarrollador se actualizó con éxito"});
     } catch (error) {
         console.error(error.message);

@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const usuarioRoute = require('./routes/usuarioRoutes')
 const devRoute = require('./routes/devRoutes')
+const proyectoRoute = require('./routes/proyectoRoutes')
 const loginRoute = require('./routes/loginRoutes')
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/usuarios', usuarioRoute);
 app.use('/api/desarrolladores', devRoute);
+app.use('/api/proyectos', proyectoRoute);
 app.use('/', loginRoute);
 
 console.log(process.env.MONGO_URI)
