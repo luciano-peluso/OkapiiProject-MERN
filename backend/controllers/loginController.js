@@ -13,7 +13,7 @@ const login = async (req, res) => {
 
         // Verificar contraseña
         const isMatch = usuario.password === password
-        console.log("pass: " + password, "otra pass: "+ usuario.password);
+        // console.log("pass: " + password, "otra pass: "+ usuario.password);
         if (!isMatch) {
             return res.status(400).json({ message: "Contraseña incorrecta" });
         }
@@ -21,7 +21,7 @@ const login = async (req, res) => {
         // Crear token JWT con el id y el rol
         const token = jwt.sign({ id: usuario._id, rol: usuario.rol }, 'secreto', { expiresIn: '1h' });
 
-        res.status(200).json({ token, success: true, message: "Iniciaste sesión con éxito" });
+        res.status(200).json({ token, success: true, username:usuario.nombre, message: "Iniciaste sesión con éxito" });
     } catch (error) {   
         console.error(error.message);
         res.status(500).json({ message: "Error en el servidor" });

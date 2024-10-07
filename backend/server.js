@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => {
-    res.send("Server levantado correctamente");
+    res.status(200).send("Server levantado correctamente");
 })
 
 app.use('/api/usuarios', usuarioRoute);
