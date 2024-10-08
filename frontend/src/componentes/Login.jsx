@@ -1,25 +1,35 @@
-import { Box, Button, Text, VStack, FormControl, FormLabel, Input, Heading, useToast } from "@chakra-ui/react"
+import { Box, Button, Text, VStack, FormControl, FormLabel, Input, Heading, useToast, Container, useColorModeValue } from "@chakra-ui/react"
 import React, { useState } from "react"
+import axios from "axios"
 
 const Login = () => { 
-    const [username, setUsername] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const toast = useToast();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/login', {
-            method: 'POST',
-            headers: {
-              'Content-type': 'application/json',
-            },
-            body: JSON.stringify({username, password}),
-          });
+      const response = await axios.post('http://localhost:5000/login', {username, password});
 
-          if(!response.ok){
-            throw new Error("Error al iniciar sesión!");
-          }
+        // Si el login es exitoso
+    if (response.data.success) {
+        const { rol } = response.data.data;
+
+        // Guardar los datos en localStorage
+        localStorage.setItem('rol', rol);
+
+        // Redirigir según el rol
+        if (rol === 'admin') {
+            window.location.href = '/admin';
+        } else if (rol === 'gerente') {
+            window.location.href = '/gerente';
+        } else if (rol === 'cliente') {
+            window.location.href = '/cliente';
+        }
+    } else {
+        console.error('Error al iniciar sesión:', response.data.message);
+    }
 
       const data = await response.json();
       toast({
@@ -40,7 +50,8 @@ const Login = () => {
     }
   }
     return(  
-      <Box p={5}>
+      <Container maxW={"container.md"} mt={"10vh"}>
+      <Box maxW={"3xl"} p={10} shadow={"base"} bg={useColorModeValue("white","gray.900")} rounded={"lg"}>
       <Heading as="h1" size="xl" mb={4}>
         Iniciar sesión
       </Heading>
@@ -72,6 +83,7 @@ const Login = () => {
         </VStack>
       </form>
     </Box>
+    </Container>
     );
 }
 

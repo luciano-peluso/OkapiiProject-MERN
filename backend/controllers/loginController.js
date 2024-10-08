@@ -18,10 +18,8 @@ const login = async (req, res) => {
             return res.status(400).json({ message: "Contraseña incorrecta" });
         }
 
-        // Crear token JWT con el id y el rol
-        const token = jwt.sign({ id: usuario._id, rol: usuario.rol }, 'secreto', { expiresIn: '1h' });
 
-        res.status(200).json({ token, success: true, username:usuario.nombre, message: "Iniciaste sesión con éxito" });
+        res.status(200).json({ success: true, data: usuario , message: "Iniciaste sesión con éxito" });
     } catch (error) {   
         console.error(error.message);
         res.status(500).json({ message: "Error en el servidor" });
