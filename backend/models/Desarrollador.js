@@ -6,7 +6,7 @@ const esquemaDesarrollador = new mongoose.Schema({
         required: true
     },
     habilidades: {
-        type: [String],
+        type: String,
         required: true
     },
     estado: {
