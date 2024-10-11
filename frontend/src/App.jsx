@@ -1,11 +1,14 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import Login from './componentes/Login'
 import AdminPage from './paginas/AdminPage'
 import GerentePage from './paginas/GerentePage'
 import ClientePage from './paginas/ClientePage'
 import RutaProtegida from './componentes/RutaProtegida';
 import VerUsuariosPage from './paginas/VerUsuariosPage';
+import CrearUsuario from './paginas/CrearUsuario';
+import VerDevs from './paginas/VerDevs';
+import CrearDev from './paginas/CrearDev';
 
 const App = () => {
   return(
@@ -24,6 +27,21 @@ const App = () => {
             <VerUsuariosPage />
           </RutaProtegida>
           }/>
+        <Route path="/crear-usuario"  element={
+            <RutaProtegida rolPermitido="admin">
+              <CrearUsuario />
+            </RutaProtegida>
+            }/>
+        <Route path="/ver-desarrolladores"  element={
+            <RutaProtegida rolPermitido="admin">
+              <VerDevs />
+            </RutaProtegida>
+            }/>
+        <Route path="/crear-desarrollador"  element={
+            <RutaProtegida rolPermitido="admin">
+              <CrearDev /> 
+            </RutaProtegida>
+            }/>
         {/* Routes para rutas protegidas para solo gerentes */}
         <Route path="/gerente" element={
           <RutaProtegida rolPermitido="gerente">

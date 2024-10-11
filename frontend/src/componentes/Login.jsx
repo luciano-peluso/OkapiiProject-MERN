@@ -1,8 +1,35 @@
 import { Box, Button, Text, VStack, FormControl, FormLabel, Input, Heading, useToast, Container, useColorModeValue } from "@chakra-ui/react"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
 const Login = () => { 
+  const navigate = useNavigate();
+
+    useEffect(() => {
+        // Verificar si hay un rol en localStorage
+        const rol = localStorage.getItem('rol');
+
+        // Si existe un rol, redirigir al dashboard correspondiente
+        if (rol) {
+            switch (rol) {
+                case 'admin':
+                    navigate('/admin');
+                    break;
+                case 'gerente':
+                    navigate('/gerente');
+                    break;
+                case 'cliente':
+                    navigate('/cliente');
+                    break;
+                default:
+                    // Si el rol no es válido o está mal definido, puedes redirigir a una página de login
+                    navigate('/login');
+                    break;
+            }
+        }
+    }, [navigate]);
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const toast = useToast();

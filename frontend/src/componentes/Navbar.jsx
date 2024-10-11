@@ -32,7 +32,7 @@ const Navbar = () => {
                 Okapii 🚀
             </Link>
         </Text>
-
+        {/* Agregar componentes específicos para cada rol. Ej: Admin -> Usuarios: desplegable - CRUD, devs: desplegable CRUD */}
         <HStack spacing={2} alignItems={"center"}>
             <Button onClick={handleLogout}>
                 <IoIosLogOut />

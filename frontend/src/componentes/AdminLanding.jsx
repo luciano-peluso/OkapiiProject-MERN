@@ -17,13 +17,13 @@ const AdminLanding = () => {
                     >
                         Ver Usuarios
                     </Button>
-                    <Button w={"full"} colorScheme='blue'>
+                    <Button w={"full"} colorScheme='blue' onClick={() => navigate("/crear-usuario")}>
                         Crear nuevo usuario
                     </Button>
-                    <Button w={"full"} colorScheme='blue'>
+                    <Button w={"full"} colorScheme='blue' onClick={() => navigate("/ver-desarrolladores")}>
                         Ver desarrolladores
                     </Button>
-                    <Button w={"full"} colorScheme='blue'>
+                    <Button w={"full"} colorScheme='blue' onClick={() => navigate("/crear-desarrollador")}>
                         Crear nuevo desarrollador
                     </Button>
                 </VStack>
