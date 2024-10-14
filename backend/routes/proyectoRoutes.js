@@ -1,9 +1,11 @@
 const express = require('express');
-const { crearProyecto, traerProyectos, editarProyecto, borrarProyecto } = require('../controllers/proyectoController.js');
+const { crearProyecto, traerProyectos, editarProyecto, borrarProyecto, traerUnProyecto } = require('../controllers/proyectoController.js');
 
 const router = express.Router();
 
 router.get('/ver', traerProyectos);
+
+router.get('/traerUnProyecto/:id', traerUnProyecto);
 
 router.post('/crear', crearProyecto);
 

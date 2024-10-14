@@ -11,6 +11,21 @@ const traerProyectos = async (req, res) => {
     }
 }
 
+const traerUnProyecto = async (req, res) => {
+    const { id } = req.params; // Extrae el id de los parámetros de la solicitud
+
+    try {
+        const unProyecto = await Proyecto.findById(id);
+        if (!unProyecto) {
+            return res.status(404).json({ success: false, message: "Proyecto no encontrado" });
+        }
+        res.status(200).json({success: true, message:"Proyecto traído con éxito", data: unProyecto});
+    } catch (error) {
+        console.error("Error en traer el proyecto");
+        res.status(500).json({ success: false, message: "Error interno del servidor"});
+    }
+}
+
 const crearProyecto = async (req, res) => {
     try {
         const nuevoProyecto = new Proyecto(req.body);
@@ -59,6 +74,7 @@ const borrarProyecto = async (req, res) => {
 module.exports = {
     crearProyecto,
     traerProyectos,
+    traerUnProyecto,
     editarProyecto,
     borrarProyecto
 }

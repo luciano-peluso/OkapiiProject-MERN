@@ -23,6 +23,21 @@ const traerUsuarios = async (req, res) => {
     }
 }
 
+const traerUnUsuario = async (req, res) => {
+    const { id } = req.params; // Extrae el id de los parámetros de la solicitud
+
+    try {
+        const unUsuario = await Usuario.findById(id);
+        if (!unUsuario) {
+            return res.status(404).json({ success: false, message: "Usuario no encontrado" });
+        }
+        res.status(200).json({success: true, message:"Usuario traído con éxito", data: unUsuario});
+    } catch (error) {
+        console.error("Error en traer el usuario");
+        res.status(500).json({ success: false, message: "Error interno del servidor"});
+    }
+}
+
 const editarUsuario = async (req, res) => {
     const { id } = req.params;
 
@@ -60,6 +75,7 @@ const borrarUsuario = async (req, res) => {
 module.exports = {
     crearUsuario,
     traerUsuarios,
+    traerUnUsuario,
     editarUsuario,
     borrarUsuario
 }

@@ -1,9 +1,11 @@
 const express = require('express');
-const { crearDev, traerDevs, editarDev, borrarDev } = require('../controllers/devController.js');
+const { crearDev, traerDevs, editarDev, borrarDev, traerUnDev } = require('../controllers/devController.js');
 
 const router = express.Router();
 
 router.get('/ver', traerDevs);
+
+router.get('/traerUnDev/:id', traerUnDev);
 
 router.post('/crear', crearDev);
 

@@ -1,9 +1,11 @@
 const express = require('express');
-const { crearUsuario, traerUsuarios, editarUsuario, borrarUsuario } = require('../controllers/usuarioController.js');
+const { crearUsuario, traerUsuarios, editarUsuario, borrarUsuario, traerUnUsuario } = require('../controllers/usuarioController.js');
 
 const router = express.Router();
 
 router.get('/ver', traerUsuarios);
+
+router.get('/traerUnUsuario/:id', traerUnUsuario);
 
 router.post('/crear', crearUsuario);
 

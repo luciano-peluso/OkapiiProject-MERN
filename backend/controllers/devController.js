@@ -10,6 +10,22 @@ const traerDevs = async (req, res) => {
         res.status(500).json({ success: false, message: "Error interno del servidor"})
     }
 }
+
+const traerUnDev = async (req, res) => {
+    const { id } = req.params; // Extrae el id de los parámetros de la solicitud
+
+    try {
+        const unDev = await Desarrollador.findById(id);
+        if (!unDev) {
+            return res.status(404).json({ success: false, message: "Desarrollador no encontrado" });
+        }
+        res.status(200).json({success: true, message:"Desarrollador traído con éxito", data: unDev});
+    } catch (error) {
+        console.error("Error en traer el desarrollador");
+        res.status(500).json({ success: false, message: "Error interno del servidor"});
+    }
+}
+
 const crearDev = async (req, res) => {
     try {
         const nuevoDev = new Desarrollador(req.body);
@@ -58,6 +74,7 @@ const borrarDev = async (req, res) => {
 module.exports = {
     crearDev,
     traerDevs,
+    traerUnDev,
     editarDev,
     borrarDev
 }
