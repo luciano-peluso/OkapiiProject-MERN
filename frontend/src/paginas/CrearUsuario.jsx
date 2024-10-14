@@ -34,7 +34,15 @@ const CrearUsuario = () => {
                 isClosable: true,
               });
         }
+        limpiarForm();
     };
+    
+    const limpiarForm = () => {
+        setNombre("");
+        setUsername("");
+        setPassword("");
+        setRol("");
+    }
     
     return (
         <>

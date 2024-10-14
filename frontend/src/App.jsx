@@ -9,6 +9,7 @@ import VerUsuariosPage from './paginas/VerUsuariosPage';
 import CrearUsuario from './paginas/CrearUsuario';
 import VerDevs from './paginas/VerDevs';
 import CrearDev from './paginas/CrearDev';
+import CrearProyecto from './paginas/CrearProyecto';
 
 const App = () => {
   return(
@@ -48,6 +49,11 @@ const App = () => {
             <GerentePage />
           </RutaProtegida>
           }/>
+          <Route path="/crear-proyecto"  element={
+            <RutaProtegida rolPermitido="gerente">
+              <CrearProyecto /> 
+            </RutaProtegida>
+            }/>
         {/* Routes para rutas protegidas para solo clientes */}
         <Route path="/cliente" element={
           <RutaProtegida rolPermitido="cliente">

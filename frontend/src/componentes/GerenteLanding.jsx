@@ -1,7 +1,9 @@
 import React from 'react';
 import { Box, VStack, Button, Container, Heading, useColorModeValue } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 const GerenteLanding = () => {
+    const navigate = useNavigate();
     return (
         <Container maxW={"container.sm"} p={10}>
             <Heading as="h1" textAlign={"center"} mb={8}>Bienvenido, Gerente</Heading>
@@ -11,7 +13,7 @@ const GerenteLanding = () => {
                     <Button w={"full"} colorScheme='blue'>
                         Ver Proyectos
                     </Button>
-                    <Button w={"full"} colorScheme='blue'>
+                    <Button w={"full"} colorScheme='blue' onClick={() => navigate('/crear-proyecto')}>
                         Crear nuevo proyecto
                     </Button>
                 </VStack>
