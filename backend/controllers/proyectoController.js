@@ -13,7 +13,7 @@ const traerProyectos = async (req, res) => {
 
 const traerUnProyecto = async (req, res) => {
     const { id } = req.params; // Extrae el id de los parámetros de la solicitud
-
+    console.log(id);
     try {
         const unProyecto = await Proyecto.findById(id);
         if (!unProyecto) {
