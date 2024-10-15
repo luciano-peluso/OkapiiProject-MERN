@@ -10,7 +10,7 @@ const GerenteLanding = () => {
 
             <Box p={10} w={"full"} shadow={"md"} bg={useColorModeValue("white","gray.700")} rounded={"lg"}>
                 <VStack spacing={4}>
-                    <Button w={"full"} colorScheme='blue'>
+                    <Button w={"full"} colorScheme='blue' onClick={() => navigate('/ver-proyectos')}>
                         Ver Proyectos
                     </Button>
                     <Button w={"full"} colorScheme='blue' onClick={() => navigate('/crear-proyecto')}>

@@ -26,6 +26,9 @@ const AdminLanding = () => {
                     <Button w={"full"} colorScheme='blue' onClick={() => navigate("/crear-desarrollador")}>
                         Crear nuevo desarrollador
                     </Button>
+                    <Button w={"full"} colorScheme='blue' onClick={() => navigate("/asignar-desarrollador")}>
+                        Asignar desarrollador a proyecto
+                    </Button>
                 </VStack>
             </Box>
         </Container>

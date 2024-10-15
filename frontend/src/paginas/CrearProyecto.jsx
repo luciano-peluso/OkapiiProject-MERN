@@ -9,7 +9,6 @@ const CrearProyecto = () => {
     const toast = useToast();
 
     /* Estos son los arrays que se usan para traer los correspondientes para el desplegable */
-    const [devs, setDevs] = useState([]);
     const [clientes, setClientes] = useState([]);
 
     /* Y estos son los campos para llenar un proyecto */
@@ -17,13 +16,12 @@ const CrearProyecto = () => {
     const [descripcion, setDescripcion] = useState('');
     const [estado, setEstado] = useState('Esperando aprobación');
     const [clienteSeleccionado, setClienteSeleccionado] = useState('');
-    const [desarrollador, setDesarrollador] = useState('');
 
     const handleCrearProyecto = async () => {
         try {
-            const nuevoProyecto = { nombre, descripcion, estado, cliente: clienteSeleccionado, desarrollador }
+            const nuevoProyecto = { nombre, descripcion, estado, cliente: clienteSeleccionado }
             const response = await axios.post('http://localhost:5000/api/proyectos/crear', nuevoProyecto);
-            if(response.data.data.success){
+            if(response.data.success){
                 toast({
                     title: "Proyecto creado con exito",
                     description: "Nuevo proyecto: " + response.data.data.nombre,
@@ -31,26 +29,6 @@ const CrearProyecto = () => {
                     duration: 5000,
                     isClosable: true
                 });
-
-                const responseDev = await axios.put('http://localhost:5000/api/desarrolladores/editar/'+ desarrollador, {estado: "Ocupado"});
-                console.log("Response Dev: ", responseDev)
-                /*if (responseDev.data.success) {
-                    toast({
-                        title: "Estado del desarrollador actualizado",
-                        description: "El estado del desarrollador ha sido cambiado a 'Ocupado'.",
-                        status: 'success',
-                        duration: 5000,
-                        isClosable: true
-                    });
-                } else {
-                    toast({
-                        title: "Error al actualizar el estado del desarrollador.",
-                        description: responseDev.data.message,
-                        status: "error",
-                        duration: 5000,
-                        isClosable: true
-                    });
-                }*/
             }
             limpiarForm();
         } catch(error) {
@@ -62,16 +40,6 @@ const CrearProyecto = () => {
                 duration: 5000,
                 isClosable: true
             })
-        }
-    }
-
-    const traerDevs = async () => {
-        try{
-            const response = await axios.get("http://localhost:5000/api/desarrolladores/ver");
-            const devsFiltrados = response.data.data.filter(dev => dev.estado === 'Disponible');
-            setDevs(devsFiltrados);
-        } catch (error) {
-            console.error(error.message);
         }
     }
 
@@ -90,12 +58,12 @@ const CrearProyecto = () => {
         setNombre('');
         setDescripcion('');
         setClienteSeleccionado('');
-        setDesarrollador('');
+        //setDesarrollador('');
     }
 
     useEffect(() => {
         traerClientes();
-        traerDevs();
+        //traerDevs();
     }, []);
     
     return (
@@ -129,16 +97,6 @@ const CrearProyecto = () => {
                         >
                             {clientes.map(cliente => (
                                 <option key={cliente._id} value={cliente._id}>{cliente.nombre}</option>
-                            ))}
-                    </Select>
-
-                    <Select 
-                            placeholder="Seleccione un desarrollador"
-                            value={desarrollador}
-                            onChange={(e) => setDesarrollador(e.target.value)}
-                        >
-                            {devs.map(dev => (
-                                <option key={dev._id} value={dev._id}>{dev.nombre}</option>
                             ))}
                     </Select>
 

@@ -9,7 +9,9 @@ import VerUsuariosPage from './paginas/VerUsuariosPage';
 import CrearUsuario from './paginas/CrearUsuario';
 import VerDevs from './paginas/VerDevs';
 import CrearDev from './paginas/CrearDev';
+import AsignarDev from './paginas/AsignarDev';
 import CrearProyecto from './paginas/CrearProyecto';
+import VerProyectos from './paginas/VerProyectos';
 
 const App = () => {
   return(
@@ -43,12 +45,24 @@ const App = () => {
               <CrearDev /> 
             </RutaProtegida>
             }/>
+            
+        <Route path="/asignar-desarrollador"  element={
+            <RutaProtegida rolPermitido="admin">
+              <AsignarDev /> 
+            </RutaProtegida>
+            }/>
+
         {/* Routes para rutas protegidas para solo gerentes */}
         <Route path="/gerente" element={
           <RutaProtegida rolPermitido="gerente">
             <GerentePage />
           </RutaProtegida>
           }/>
+          <Route path="/ver-proyectos"  element={
+            <RutaProtegida rolPermitido="gerente">
+              <VerProyectos /> 
+            </RutaProtegida>
+            }/>
           <Route path="/crear-proyecto"  element={
             <RutaProtegida rolPermitido="gerente">
               <CrearProyecto /> 
