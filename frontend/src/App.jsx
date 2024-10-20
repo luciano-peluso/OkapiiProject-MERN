@@ -12,6 +12,7 @@ import CrearDev from './paginas/CrearDev';
 import AsignarDev from './paginas/AsignarDev';
 import CrearProyecto from './paginas/CrearProyecto';
 import VerProyectos from './paginas/VerProyectos';
+import VerMisProyectos from './paginas/VerMisProyectos';
 
 const App = () => {
   return(
@@ -72,6 +73,11 @@ const App = () => {
         <Route path="/cliente" element={
           <RutaProtegida rolPermitido="cliente">
             <ClientePage />
+          </RutaProtegida>
+          }/>
+          <Route path="/ver-mis-proyectos" element={
+          <RutaProtegida rolPermitido="cliente">
+            <VerMisProyectos />
           </RutaProtegida>
           }/>
         <Route path="*" element={<Login />} /> {/* Redirige a Login si la ruta no es válida */}

@@ -7,12 +7,12 @@ const Login = () => {
   const navigate = useNavigate();
 
     useEffect(() => {
-        // Verificar si hay un rol en localStorage
-        const rol = localStorage.getItem('rol');
-
+        // Verificar si hay un usuario en localStorage
+        const usuario = JSON.parse(localStorage.getItem('usuario'));
+        console.log("User: ", usuario);
         // Si existe un rol, redirigir al dashboard correspondiente
-        if (rol) {
-            switch (rol) {
+        if (usuario) {
+            switch (usuario.rol) {
                 case 'admin':
                     navigate('/admin');
                     break;
@@ -40,32 +40,22 @@ const Login = () => {
       const response = await axios.post('http://localhost:5000/login', {username, password});
 
         // Si el login es exitoso
-    if (response.data.success) {
-        const { rol } = response.data.data;
-
-        // Guardar los datos en localStorage
-        localStorage.setItem('rol', rol);
-
-        // Redirigir según el rol
-        if (rol === 'admin') {
-            window.location.href = '/admin';
-        } else if (rol === 'gerente') {
-            window.location.href = '/gerente';
-        } else if (rol === 'cliente') {
-            window.location.href = '/cliente';
-        }
-    } else {
-        console.error('Error al iniciar sesión:', response.data.message);
-    }
-
-      const data = await response.json();
-      toast({
-        title: 'Inicio de sesión exitoso.',
-        description: `Bienvenido, ${data.username}!`,
-        status: 'success',
-        duration: 5000,
-        isClosable: true,
-      });
+      if (response.data.success) {
+          const usuario = response.data.data;
+          // Guardar los datos en localStorage
+          localStorage.setItem('usuario', JSON.stringify(usuario));
+          console.log(usuario)
+          // Redirigir según el rol
+          if (usuario.rol === 'admin') {
+              window.location.href = '/admin';
+          } else if (usuario.rol === 'gerente') {
+              window.location.href = '/gerente';
+          } else if (usuario.rol === 'cliente') {
+              window.location.href = '/cliente';
+          }
+      } else {
+          console.error('Error al iniciar sesión:', response.data.message);
+      }
     } catch (error) {
       toast({
         title: 'Error.',

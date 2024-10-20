@@ -9,11 +9,11 @@ const Navbar = () => {
     const { colorMode, toggleColorMode } = useColorMode();
 
     const handleLogout = () => {
-        localStorage.removeItem('rol');
+        localStorage.removeItem('usuario');
         window.location.href = '/login';
     };
     
-    const rol = localStorage.getItem('rol');
+    const usuario = JSON.parse(localStorage.getItem('usuario'));
 
     return(
         <Container maxW={"1140px"} px={4}>
@@ -28,7 +28,7 @@ const Navbar = () => {
         >
         <Text fontSize={{base:"22", sm:"28"}} fontWeight={"bold"} textAlign={"center"}
           bgGradient={'linear(to-r, cyan.400, blue.500)'} bgClip='text'>
-            <Link to={`/${rol}`}>
+            <Link to={`/${usuario.rol}`}>
                 Okapii 🚀
             </Link>
         </Text>
