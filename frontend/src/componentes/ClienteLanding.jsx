@@ -13,9 +13,6 @@ const ClienteLanding = () => {
                     <Button w={"full"} colorScheme='blue' onClick={() => navigate('/ver-mis-proyectos')}>
                         Ver mis proyectos
                     </Button>
-                    <Button w={"full"} colorScheme='blue'>
-                        Crear nuevo proyecto
-                    </Button>
                 </VStack>
             </Box>
     </Container>

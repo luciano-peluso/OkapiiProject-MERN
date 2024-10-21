@@ -58,12 +58,10 @@ const CrearProyecto = () => {
         setNombre('');
         setDescripcion('');
         setClienteSeleccionado('');
-        //setDesarrollador('');
     }
 
     useEffect(() => {
         traerClientes();
-        //traerDevs();
     }, []);
     
     return (

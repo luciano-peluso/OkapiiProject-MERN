@@ -53,7 +53,6 @@ const VerDevs = () => {
     }
 
     const handleEditClick = (dev) => {
-        console.log("Hola")
         setSelectedDev(dev);
         setFormData({
             nombre: dev.nombre,
