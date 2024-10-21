@@ -47,10 +47,12 @@ const VerMisProyectos = () => {
         <Container maxW={"1140"}>
             <Table variant={"striped"}>
                 <Thead>
-                    <Th>Nombre</Th>
-                    <Th>Descripcion</Th>
-                    <Th>Estado</Th>
-                    <Th>Desarrollador</Th>
+                    <Tr>
+                        <Th>Nombre</Th>
+                        <Th>Descripcion</Th>
+                        <Th>Estado</Th>
+                        <Th>Desarrollador</Th>
+                    </Tr>
                 </Thead>
                 <Tbody>
                         {proyectos.map((proyecto) => {

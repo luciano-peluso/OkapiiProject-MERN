@@ -99,14 +99,14 @@ const VerUsuariosPage = () => {
         <>
         <Navbar />
         <Container maxW={"1140"}>
-            <Table variant="striped" >
+            <Table variant="striped">
                 <Thead>
                     <Tr>
                         <Th textAlign={"center"}>ID</Th>
-                        <Th textAlign={"center"}>Nombre</Th>
-                        <Th textAlign={"center"}>Username</Th>
-                        <Th textAlign={"center"}>Rol</Th>
-                        <Th textAlign={"center"}>Acciones</Th>
+                        <Th>Nombre</Th>
+                        <Th>Username</Th>
+                        <Th>Rol</Th>
+                        <Th>Acciones</Th>
                     </Tr>
                 </Thead>
                 <Tbody>
@@ -117,12 +117,8 @@ const VerUsuariosPage = () => {
                             <Td>{usuario.username}</Td>
                             <Td>{usuario.rol}</Td>
                             <Td>
-                                <IconButton icon={<EditIcon />} mr={3} onClick={() => handleEditClick(usuario)} colorScheme="green">
-                                    Editar
-                                </IconButton> 
-                                <IconButton icon={<DeleteIcon />} onClick={() => handleBorrarUsuario(usuario._id)} colorScheme="red">
-                                    Borrar
-                                </IconButton>
+                                <IconButton icon={<EditIcon />} mr={3} onClick={() => handleEditClick(usuario)} colorScheme="green"/> 
+                                <IconButton icon={<DeleteIcon />} onClick={() => handleBorrarUsuario(usuario._id)} colorScheme="red" />
                             </Td>
                         </Tr>
                     ))}

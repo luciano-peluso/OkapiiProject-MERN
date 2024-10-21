@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from "axios";
-import { Button, Container, FormControl, FormLabel, IconButton, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, Table, Tbody, Td, Th, Thead, Tr, useDisclosure, useToast } from "@chakra-ui/react";
+import { Button, Container, FormControl, FormLabel, HStack, IconButton, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, Table, Tbody, Td, Th, Thead, Tr, useDisclosure, useToast } from "@chakra-ui/react";
 import Navbar from "../componentes/Navbar";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 
@@ -81,7 +81,7 @@ const VerDevs = () => {
                 duration: 5000,
                 isClosable: true
             })
-        } catch (error){ 
+        } catch (error) { 
             toast({
                 title: "Error",
                 description: error.message,
@@ -98,7 +98,7 @@ const VerDevs = () => {
         <>
         <Navbar />
         <Container maxW="1140">
-            <Table>
+            <Table variant={"striped"}>
                 <Thead>
                     <Tr>
                         <Th>Id</Th>
@@ -116,8 +116,10 @@ const VerDevs = () => {
                             <Td>{dev.habilidades}</Td>
                             <Td>{dev.estado}</Td>
                             <Td>
-                                <IconButton icon={<EditIcon />} onClick={() => handleEditClick(dev)} colorScheme="green"/>
-                                <IconButton icon={<DeleteIcon />} onClick={() => handleBorrar(dev._id)} colorScheme="red" />
+                                <HStack spacing={2}>
+                                    <IconButton icon={<EditIcon />} onClick={() => handleEditClick(dev)} colorScheme="green"/>
+                                    <IconButton icon={<DeleteIcon />} onClick={() => handleBorrar(dev._id)} colorScheme="red" />
+                                </HStack>
                             </Td>
                         </Tr>
                     ))}
