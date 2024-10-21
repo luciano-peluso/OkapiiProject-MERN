@@ -36,39 +36,39 @@ const Navbar = () => {
         {/* Agregar componentes específicos para cada rol. Ej: Admin -> Usuarios: desplegable - CRUD, devs: desplegable CRUD */}
         {/* Mostrar links según el rol */}
         <HStack spacing={4}   >
-        {usuario.rol === 'admin' && (
-          <>
-              <Menu>
-                  <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-                      Usuarios
-                  </MenuButton>
-                  <MenuList>
-                      <MenuItem as={Link} to="/ver-usuarios">
-                          Ver Usuarios
-                      </MenuItem>
-                      <MenuItem as={Link} to="/crear-usuario">
-                          Crear Usuario
-                      </MenuItem>
-                  </MenuList>
-              </Menu>
-              <Menu>
-                  <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-                      Desarrolladores
-                  </MenuButton>
-                  <MenuList>
-                      <MenuItem as={Link} to="/ver-desarrolladores">
-                          Ver desarrolladores
-                      </MenuItem>
-                      <MenuItem as={Link} to="/crear-desarrollador">
-                          Crear desarrollador
-                      </MenuItem>
-                      <MenuItem as={Link} to="/asignar-desarrollador">
-                          Asignar desarrollador
-                      </MenuItem>
-                  </MenuList>
-              </Menu>
-          </>
-      )}
+                    {usuario.rol === 'admin' && (
+                        <>
+                        <Menu>
+                            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                                Usuarios
+                            </MenuButton>
+                            <MenuList>
+                                <MenuItem as={Link} to="/ver-usuarios">
+                                    Ver Usuarios
+                                </MenuItem>
+                                <MenuItem as={Link} to="/crear-usuario">
+                                    Crear Usuario
+                                </MenuItem>
+                            </MenuList>
+                        </Menu>
+                        <Menu>
+                            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                                Desarrolladores
+                            </MenuButton>
+                            <MenuList>
+                                <MenuItem as={Link} to="/ver-desarrolladores">
+                                    Ver desarrolladores
+                                </MenuItem>
+                                <MenuItem as={Link} to="/crear-desarrollador">
+                                    Crear desarrollador
+                                </MenuItem>
+                                <MenuItem as={Link} to="/asignar-desarrollador">
+                                    Asignar desarrollador
+                                </MenuItem>
+                            </MenuList>
+                        </Menu>
+                        </>
+                    )}
                     {usuario.rol === 'gerente' && (
                         <>
                         <Menu>
