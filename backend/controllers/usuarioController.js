@@ -1,4 +1,5 @@
 const Usuario = require('../models/Usuario');
+const Proyecto = require('../models/Proyecto');
 const mongoose = require('mongoose')
 
 /* Para crear un usuario */
@@ -64,11 +65,23 @@ const borrarUsuario = async (req, res) => {
     }
 
     try {
-        await Usuario.findByIdAndDelete(id);
-        res.status(200).json({ success: true, message:"Usuario borrado" });
+        // Borrar usuario
+        const usuarioBorrado = await Usuario.findByIdAndDelete(id);
+
+        if (!usuarioBorrado) {
+            return res.status(404).json({ success: false, message: "Usuario no encontrado" });
+        }
+
+        // Borrar proyectos relacionados si el usuario es cliente
+        if (usuarioBorrado.rol === "cliente") { 
+            await Proyecto.deleteMany({ cliente: id });
+            return res.status(200).json({ success: true, message: "Usuario y proyectos relacionados borrados" });
+        }
+
+        res.status(200).json({ success: true, message: "Usuario borrado con éxito" });
     } catch (error) {
-        console.error("Error en borrar el usuario: "+ error.message);
-        res.status(500).json({ success: false, message:"Error interno del servidor" });
+        console.error("Error en borrar el usuario: " + error.message);
+        res.status(500).json({ success: false, message: "Error interno del servidor" });
     }
 }
 
